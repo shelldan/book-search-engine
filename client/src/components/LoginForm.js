@@ -14,7 +14,6 @@ const LoginForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -46,8 +45,9 @@ const LoginForm = () => {
 
       const { token, user } = await response.json();
       console.log(user);
-      Auth.login(token);
-      */
+       */
+      Auth.login(data.loginUser.token);
+     
     } catch (err) {
       console.error(err);
       setShowAlert(true);
