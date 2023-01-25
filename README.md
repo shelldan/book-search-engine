@@ -32,7 +32,7 @@ SO THAT I can keep a list of books to purchase
 ```
 
 ## Heroku
-Please view the live application [here]()
+Please view the live application [here](https://shelldan-book-search-engine.herokuapp.com/)
 
 ## Screenshot
 ![](client/public/assets/images/screenshot-1.png)
