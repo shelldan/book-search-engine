@@ -41,13 +41,13 @@ const SearchBooks = () => {
 		}
 
 		try {
-			const response = await searchGoogleBooks(searchInput);
+			const response = await searchGoogleBooks(searchInput); // return API info
 
 			if (!response.ok) {
 				throw new Error('something went wrong!');
 			}
 
-			const { items } = await response.json();
+			const { items } = await response.json(); // destructuring the API 
 
 			const bookData = items.map((book) => ({
 				bookId: book.id,
@@ -55,6 +55,7 @@ const SearchBooks = () => {
 				title: book.volumeInfo.title,
 				description: book.volumeInfo.description,
 				image: book.volumeInfo.imageLinks?.thumbnail || '',
+				preview: book.volumeInfo.previewLink // the preview property is not add in the backend, so it could break graphQl, so when you search book and then hit 'submit', -> network -> Fetch/XHR -> volumes?q=book -> items.volumeInfo.previewLink 
 			}));
 
 			setSearchedBooks(bookData);
@@ -69,6 +70,8 @@ const SearchBooks = () => {
 		// find the book in `searchedBooks` state by the matching id
 		const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
+		// delete preview
+		delete bookToSave.preview // remove the preview property, so it doesn't break graphQl
 		// get token
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -142,6 +145,7 @@ const SearchBooks = () => {
 									<Card.Title>{book.title}</Card.Title>
 									<p className='small'>Authors: {book.authors}</p>
 									<Card.Text>{book.description}</Card.Text>
+									<a href={book.preview}>See on Google</a>
 									{Auth.loggedIn() && (
 										<Button
 											disabled={savedBookIds?.some(
