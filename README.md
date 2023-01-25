@@ -5,7 +5,8 @@
     <img src="https://img.shields.io/badge/-Node-green" />
     <img src="https://img.shields.io/badge/-Express.js-blue" />
     <img src="https://img.shields.io/badge/-Mongoose-yellow" />
-    <img src="https://img.shields.io/badge/-Insomnia-red" />
+    <img src="https://img.shields.io/badge/-React-red" />
+    <img src="https://img.shields.io/badge/-GraphQL-grey" />
 </p>
 
 
